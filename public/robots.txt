@@ -1,0 +1,48 @@
+# ==========================================
+# Robots.txt for MetaWave Innovations
+# Optimized for Search Engines & AI Crawlers
+# ==========================================
+
+# Standard Search Engines (Google, Bing, Yahoo, Yandex, DuckDuckGo)
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /config/
+Disallow: /private/
+Disallow: /*?*   # Disallow duplicate content query parameters
+
+# AI Crawler Directives (ChatGPT / OpenAI Bot)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# AI User Assistant Directives (ChatGPT user queries)
+User-agent: ChatGPT-User
+Allow: /
+
+# Google AI Extended (Gemini / Google AI Training Crawler)
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Anthropic AI Crawler (Claude)
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Claude Assistant User Queries
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI Bot
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap Declaration
+Sitemap: https://www.metawaveinnovations.com/sitemap.xml

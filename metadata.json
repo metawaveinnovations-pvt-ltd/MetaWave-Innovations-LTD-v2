@@ -1,0 +1,8 @@
+{
+  "name": "Remix: MetaWave Innovations LTD",
+  "description": "MetaWave Innovations is a leading global technology, software development, AI, automation, and digital transformation company.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

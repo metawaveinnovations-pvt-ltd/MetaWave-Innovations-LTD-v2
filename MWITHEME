@@ -1,0 +1,76 @@
+# MetaWave Innovations Visual Style & Theme Guide (MWITHEME)
+
+This document outlines the official design system, typography, color palette, gradients, and interactive tokens used across the **MetaWave Innovations** digital ecosystem.
+
+---
+
+## 1. Design & Aesthetic Philosophy
+MetaWave Innovations utilizes a **Swiss-Modern, Premium Corporate Minimalist** aesthetic. 
+* **Mood:** Trustworthy, highly technical, clean, and forward-looking.
+* **Layout:** Generous negative space, rounded corners (`rounded-2xl` and `rounded-3xl`), precise borders (`border-slate-200/90`), and subtle radial glowing highlights to denote active server nodes and modern web frameworks.
+
+---
+
+## 2. Typography Strategy
+
+Our visual identity relies on three high-quality typeface pairings, imported directly via Google Fonts:
+
+| Font Classification | Family | Primary Use Case |
+| :--- | :--- | :--- |
+| **Primary Sans-Serif** | `Inter` | Body copy, secondary descriptions, paragraphs, form labels, and UI state elements. |
+| **High-Impact Display** | `Plus Jakarta Sans` | Hero headers, titles, section headings, and cards. Designed for structural layout elegance. |
+| **Monospace Accent** | `JetBrains Mono` | Code blocks, compilation status markers, numeric statistics, system telemetry tags, and metadata stamps. |
+
+---
+
+## 3. Core Color Palette
+
+### A. Brand Core Colors
+* **MetaWave Primary Green (`#326E45`):** Represents growth, sustainable systems engineering, and elite performance. Used for primary interactive triggers, hover states, and brand highlights.
+* **Sovereign Dark Slate (`#0A0F1C`):** Used for solid headers, custom dark campaign cards, deep overlays, and code consoles.
+* **Sovereign Dark Blue-Navy (`#0E1527`):** Immersive visual campaign backdrop container shading.
+* **Premium Background Canvas (`#FAFBFD`):** High-contrast, clean off-white canvas which reduces eye fatigue while keeping UI elements extremely distinct.
+* **Primary Slate Body Text (`#1E293B`):** Warm, high-readability gray/black used for optimal reader comfort.
+
+### B. Custom OKLCH Tailwind Color Mappings
+Custom Tailwind oklch color values declared in `@theme`:
+```css
+--color-emerald-50: oklch(97.9% .021 166.113);
+--color-emerald-100: oklch(95% .052 163.051);
+--color-emerald-200: oklch(90.5% .093 164.15);
+--color-emerald-300: oklch(84.5% .143 164.978);
+--color-emerald-400: oklch(76.5% .177 163.223);
+--color-emerald-500: oklch(69.6% .17 162.48);
+--color-emerald-600: oklch(59.6% .145 163.225);
+--color-emerald-700: oklch(50.8% .118 165.612);
+--color-emerald-950: oklch(26.2% .051 172.552);
+```
+
+---
+
+## 4. Key Gradients
+
+Our interface employs smooth color progressions to add depth without cluttering the screen space:
+
+1. **MetaWave Corporate Identity Gradient:**
+   * `bg-gradient-to-r from-emerald-600 via-[#326E45] to-emerald-800`
+   * *Usage:* Primary CTA buttons, interactive callouts, and success headers.
+2. **Deep Space Campaign / Advertisement Backdrop:**
+   * `bg-gradient-to-r from-slate-900 via-[#0E1527] to-slate-900`
+   * *Usage:* Sponsored campaign backdrops and premium dark theme callouts.
+3. **Glossy Radial Accent Glow:**
+   * `from-emerald-500/[0.01] to-teal-500/[0.01]` transiting to `from-emerald-500/[0.04] to-teal-500/[0.04]`
+   * *Usage:* Subtle background hover gradients on technology stack cards.
+4. **Header Micro-Shine Accent:**
+   * `bg-gradient-to-r from-[#326E45]/40 via-emerald-600/30 to-[#326E45]/40`
+   * *Usage:* Profile card top border reflections.
+
+---
+
+## 5. Layout & Element Styling Standards
+
+* **Borders:** Subtle slate borders (`border border-slate-200/90`) that change to soft emerald hues on hover (`hover:border-emerald-500/30`).
+* **Shadows:** Standard light shadow (`shadow-sm`) transitioning on interaction to a rich, double-layered premium shadow:
+  * `hover:shadow-[0_25px_50px_-12px_rgba(16,185,129,0.12),0_8px_24px_-4px_rgba(15,23,42,0.04)]`
+* **Elevations & Scales:** Staggered spring transforms:
+  * `hover:scale-[1.02] hover:-translate-y-1.5 transition-all duration-300`

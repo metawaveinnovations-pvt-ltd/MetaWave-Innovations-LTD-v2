@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Elegant interlocking 'M' structure in professional Slate -->
+  <path
+    d="M15 32 L40 54 L50 42 L60 54 L85 32 L73 32 L60 44 L50 31 L40 44 L27 32 Z"
+    fill="#1E293B"
+  />
+
+  <!-- Precise geometric interlocking 'W' structure in high-converting tech emerald (#326E45) -->
+  <path
+    d="M27.5 39.5 L40 54 L47 48.5 L51.5 52.5 L40 64 L27.5 50.5 Z"
+    fill="#326E45"
+  />
+  <path
+    d="M72.5 39.5 L60 54 L53 48.5 L48.5 52.5 L60 64 L72.5 50.5 Z"
+    fill="#326E45"
+  />
+  <path
+    d="M40 64 L50 52 L60 64 L50 76 Z"
+    fill="#326E45"
+  />
+
+  <!-- Continuous overlay ribbon gloss cut -->
+  <path
+    d="M40 44 L50 31 L60 44 L50 56 Z"
+    fill="#326E45"
+    opacity="0.95"
+  />
+</svg>
