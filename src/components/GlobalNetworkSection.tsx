@@ -1,6 +1,21 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Globe, UserCheck, ShieldCheck, Cpu, Radio, Sparkles, MapPin, Activity, CheckCircle2, User, Building2, Briefcase } from 'lucide-react';
+import { 
+  Globe, 
+  UserCheck, 
+  CheckCircle2, 
+  X, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Building2, 
+  Send, 
+  Sparkles,
+  ArrowRight,
+  ExternalLink,
+  ShieldCheck,
+  Clock
+} from 'lucide-react';
 import MetaWaveLogo from './MetaWaveLogo';
 
 interface HeadOfOperations {
@@ -12,6 +27,11 @@ interface HeadOfOperations {
   focus: string;
   status: string;
   avatarBg: string;
+  photo: string;
+  bio: string;
+  email: string;
+  phone: string;
+  address: string;
 }
 
 interface NetworkNode {
@@ -34,6 +54,10 @@ interface NetworkNode {
 
 export function GlobalNetworkSection() {
   const [hoveredCode, setHoveredCode] = useState<string | null>(null);
+  const [selectedNode, setSelectedNode] = useState<NetworkNode | null>(null);
+  const [contactMode, setContactMode] = useState<boolean>(false);
+  const [contactSent, setContactSent] = useState<boolean>(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   // Karachi HQ (Primary Global Headquarters)
   const karachiHQ: NetworkNode = {
@@ -58,7 +82,12 @@ export function GlobalNetworkSection() {
       experience: '14+ Yrs Executive Leadership',
       focus: 'Global Architecture, Delivery & Cloud Pipelines',
       status: 'Active • Global Command HQ',
-      avatarBg: 'bg-emerald-600'
+      avatarBg: 'bg-emerald-600',
+      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
+      bio: 'Spearheads MetaWave Innovations\' global technology strategy, overseeing cloud architecture pipelines, AI system deployments, and enterprise engineering teams across all international hubs.',
+      email: 'faraz.coo@metawaveinnovations.com',
+      phone: '+92 (21) 3456-7890',
+      address: 'MetaWave Tower, Main Clifton Rd, Karachi, Pakistan'
     }
   };
 
@@ -85,7 +114,12 @@ export function GlobalNetworkSection() {
       experience: '12+ Yrs Govt Tech Systems',
       focus: 'Federal Enterprise & Defense Alliances',
       status: 'Active • Federal Hub',
-      avatarBg: 'bg-emerald-700'
+      avatarBg: 'bg-emerald-700',
+      photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400',
+      bio: 'Leads national technology integration, public sector digitization, and high-security enterprise framework partnerships with federal institutions and corporate enterprises across Pakistan.',
+      email: 'tariq.khan@metawaveinnovations.com',
+      phone: '+92 (51) 2345-678',
+      address: 'Blue Area Tech Complex, Sector F-6, Islamabad, Pakistan'
     }
   };
 
@@ -112,7 +146,12 @@ export function GlobalNetworkSection() {
         experience: '15+ Yrs Silicon Valley Tech',
         focus: 'AI Models, Enterprise Cloud & Silicon Alliances',
         status: 'Active • Americas Hub',
-        avatarBg: 'bg-[#326E45]'
+        avatarBg: 'bg-[#326E45]',
+        photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400',
+        bio: 'Directs Americas AI & Cloud technology innovation, fostering Silicon Valley alliances and scaling enterprise machine learning frameworks for Fortune 500 clients.',
+        email: 'david.vance@metawaveinnovations.com',
+        phone: '+1 (415) 890-1234',
+        address: '500 Howard St, Financial District, San Francisco, CA, USA'
       }
     },
     {
@@ -136,7 +175,12 @@ export function GlobalNetworkSection() {
         experience: '11+ Yrs Enterprise Systems',
         focus: 'Fortune 500 ERP & Scale Systems',
         status: 'Active • Midwest Hub',
-        avatarBg: 'bg-[#326E45]'
+        avatarBg: 'bg-[#326E45]',
+        photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400',
+        bio: 'Oversees enterprise client solutions, enterprise system integration, and ERP modernization for corporate partners throughout North America.',
+        email: 'sarah.jenkins@metawaveinnovations.com',
+        phone: '+1 (312) 567-8901',
+        address: '233 S Wacker Dr, Willis Tower, Chicago, IL, USA'
       }
     },
     {
@@ -160,7 +204,12 @@ export function GlobalNetworkSection() {
         experience: '13+ Yrs UK Enterprise Tech',
         focus: 'FinTech, EU Cloud & Banking Architecture',
         status: 'Active • Europe HQ',
-        avatarBg: 'bg-indigo-700'
+        avatarBg: 'bg-indigo-700',
+        photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400',
+        bio: 'Drives European expansion, managing FinTech security protocols, sovereign cloud compliance, and banking technology alliances across the UK and EMEA.',
+        email: 'oliver.sterling@metawaveinnovations.com',
+        phone: '+44 (20) 7946-0912',
+        address: '30 St Mary Axe, City of London, London, UK'
       }
     },
     {
@@ -184,7 +233,12 @@ export function GlobalNetworkSection() {
         experience: '10+ Yrs Vision 2030 Tech',
         focus: 'Digital Transformation & Enterprise AI',
         status: 'Active • KSA Operations',
-        avatarBg: 'bg-emerald-800'
+        avatarBg: 'bg-emerald-800',
+        photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400',
+        bio: 'Manages digital transformation initiatives aligned with Saudi Vision 2030, delivering enterprise AI, bespoke software, and smart infrastructure solutions.',
+        email: 'tariq.almansoor@metawaveinnovations.com',
+        phone: '+966 (11) 456-7890',
+        address: 'King Fahd Road, Olaya District, Riyadh, Saudi Arabia'
       }
     },
     {
@@ -208,7 +262,12 @@ export function GlobalNetworkSection() {
         experience: '9+ Yrs Infrastructure Lead',
         focus: 'Enterprise FinTech & Smart Infrastructure',
         status: 'Active • Gulf Hub',
-        avatarBg: 'bg-[#326E45]'
+        avatarBg: 'bg-[#326E45]',
+        photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400',
+        bio: 'Oversees Gulf regional digital infrastructure, high-concurrency enterprise software deployments, and sovereign cloud tech architecture for leading Qatar enterprises.',
+        email: 'hassan.alkuwari@metawaveinnovations.com',
+        phone: '+974 4455 6677',
+        address: 'West Bay Tech Tower, Corniche Rd, Doha, Qatar'
       }
     },
     {
@@ -232,13 +291,31 @@ export function GlobalNetworkSection() {
         experience: '12+ Yrs APAC Software Lead',
         focus: 'South East Asia Cloud & Startup Ventures',
         status: 'Active • APAC Hub',
-        avatarBg: 'bg-[#245032]'
+        avatarBg: 'bg-[#245032]',
+        photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
+        bio: 'Leads South East Asian growth, directing technology partnerships, startup accelerators, and cross-border software engineering teams across the Asia-Pacific region.',
+        email: 'weichen.tan@metawaveinnovations.com',
+        phone: '+60 (3) 2181-9000',
+        address: 'KLCC Tech Park, Jalan Ampang, Kuala Lumpur, Malaysia'
       }
     }
   ];
 
   const allLocations = [karachiHQ, islamabadNode, ...internationalNodes];
   const activeHoveredNode = allLocations.find(loc => loc.code === hoveredCode);
+
+  const handleOpenModal = (node: NetworkNode) => {
+    setSelectedNode(node);
+    setContactMode(false);
+    setContactSent(false);
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.email || !formData.message) return;
+    setContactSent(true);
+  };
 
   return (
     <section 
@@ -267,7 +344,7 @@ export function GlobalNetworkSection() {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto font-normal leading-relaxed text-balance">
-            Connecting businesses across the world through innovative software, AI solutions, enterprise systems, cloud technologies, and digital transformation.
+            Connecting businesses across the world through innovative software, AI solutions, enterprise systems, cloud technologies, and digital transformation. Click any pin to connect with our Regional Head of Operations.
           </p>
         </div>
 
@@ -294,9 +371,9 @@ export function GlobalNetworkSection() {
             }}
           />
 
-          {/* Interactive Floating Card for Head of Operations on Hover */}
+          {/* Interactive Floating Hover Card for Head of Operations */}
           <AnimatePresence>
-            {activeHoveredNode && (
+            {activeHoveredNode && !selectedNode && (
               <motion.div
                 key={activeHoveredNode.code}
                 initial={{ opacity: 0, scale: 0.9, y: 8 }}
@@ -305,12 +382,13 @@ export function GlobalNetworkSection() {
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 onMouseEnter={() => setHoveredCode(activeHoveredNode.code)}
                 onMouseLeave={() => setHoveredCode(null)}
+                onClick={() => handleOpenModal(activeHoveredNode)}
                 style={{
                   left: `${Math.min(Math.max((activeHoveredNode.x / 1000) * 100, 16), 84)}%`,
                   top: `${activeHoveredNode.y > 260 ? ((activeHoveredNode.y - 125) / 520) * 100 : ((activeHoveredNode.y + 35) / 520) * 100}%`,
                   transform: 'translateX(-50%)'
                 }}
-                className="absolute z-40 pointer-events-auto w-72 sm:w-80 bg-slate-950/95 backdrop-blur-xl border border-emerald-500/50 rounded-2xl p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.85)] text-white"
+                className="absolute z-30 pointer-events-auto cursor-pointer w-72 sm:w-80 bg-slate-950/95 backdrop-blur-xl border border-emerald-500/60 rounded-2xl p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.85)] text-white hover:border-emerald-400 transition-colors"
               >
                 {/* Header Tag */}
                 <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
@@ -327,9 +405,11 @@ export function GlobalNetworkSection() {
 
                 {/* Head of Operations Profile Info */}
                 <div className="flex items-start gap-3">
-                  <div className={`w-10 h-10 rounded-xl ${activeHoveredNode.headOfOperations.avatarBg} text-white font-bold text-sm flex items-center justify-center shrink-0 border border-emerald-400/30 shadow-md`}>
-                    {activeHoveredNode.headOfOperations.initials}
-                  </div>
+                  <img 
+                    src={activeHoveredNode.headOfOperations.photo} 
+                    alt={activeHoveredNode.headOfOperations.name}
+                    className="w-10 h-10 rounded-xl object-cover border border-emerald-400/40 shadow-md shrink-0"
+                  />
 
                   <div className="flex flex-col min-w-0 text-left">
                     <div className="flex items-center gap-1">
@@ -356,13 +436,10 @@ export function GlobalNetworkSection() {
                   </div>
                 </div>
 
-                {/* Footer Operational Status */}
-                <div className="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[9px] font-mono">
-                  <span className="text-slate-400">{activeHoveredNode.coords}</span>
-                  <span className="text-emerald-400 font-bold flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    <span>{activeHoveredNode.headOfOperations.status}</span>
-                  </span>
+                {/* Footer Click Prompt */}
+                <div className="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[9px] font-mono text-emerald-400 font-bold">
+                  <span>Click pin for full profile & office contact</span>
+                  <ArrowRight size={11} className="animate-pulse" />
                 </div>
               </motion.div>
             )}
@@ -498,6 +575,7 @@ export function GlobalNetworkSection() {
                   key={`node-${node.code}`}
                   onMouseEnter={() => setHoveredCode(node.code)}
                   onMouseLeave={() => setHoveredCode(null)}
+                  onClick={() => handleOpenModal(node)}
                   className="cursor-pointer transition-opacity duration-300"
                   opacity={hoveredCode && !isHovered && hoveredCode !== 'PK_KHI' ? 0.45 : 1}
                 >
@@ -524,9 +602,10 @@ export function GlobalNetworkSection() {
                     className="pointer-events-auto cursor-pointer overflow-visible select-none"
                     onMouseEnter={() => setHoveredCode(node.code)}
                     onMouseLeave={() => setHoveredCode(null)}
+                    onClick={() => handleOpenModal(node)}
                   >
                     <div className={`backdrop-blur-md bg-[#021f16]/90 border border-emerald-500/50 rounded-lg px-2.5 py-1 flex items-center gap-1.5 shadow-lg transition-all duration-200 ${
-                      isHovered ? 'border-emerald-300 scale-105 bg-[#043324]' : ''
+                      isHovered ? 'opacity-100 scale-105 border-emerald-300 bg-[#043324] pointer-events-auto' : 'opacity-0 scale-90 pointer-events-none'
                     }`}>
                       <span className="text-xs leading-none select-none" role="img" aria-label={node.country}>{node.flag}</span>
                       <div className="flex flex-col text-left min-w-0">
@@ -548,6 +627,7 @@ export function GlobalNetworkSection() {
                   key={`node-${n.code}`}
                   onMouseEnter={() => setHoveredCode(n.code)}
                   onMouseLeave={() => setHoveredCode(null)}
+                  onClick={() => handleOpenModal(n)}
                   className="cursor-pointer transition-opacity duration-300"
                   opacity={hoveredCode && !isHovered && hoveredCode !== 'PK_KHI' ? 0.4 : 1}
                 >
@@ -574,9 +654,10 @@ export function GlobalNetworkSection() {
                     className="pointer-events-auto cursor-pointer overflow-visible select-none"
                     onMouseEnter={() => setHoveredCode(n.code)}
                     onMouseLeave={() => setHoveredCode(null)}
+                    onClick={() => handleOpenModal(n)}
                   >
                     <div className={`backdrop-blur-md bg-[#09152b]/90 border border-sky-500/40 rounded-lg px-2.5 py-1 flex items-center gap-1.5 shadow-lg transition-all duration-200 ${
-                      isHovered ? 'border-sky-300 scale-105 bg-[#0f2347]' : ''
+                      isHovered ? 'opacity-100 scale-105 border-sky-300 bg-[#0f2347] pointer-events-auto' : 'opacity-0 scale-90 pointer-events-none'
                     }`}>
                       <span className="text-xs leading-none select-none" role="img" aria-label={n.country}>{n.flag}</span>
                       <div className="flex flex-col text-left min-w-0">
@@ -599,6 +680,7 @@ export function GlobalNetworkSection() {
                   key="hq-primary-node"
                   onMouseEnter={() => setHoveredCode(hq.code)}
                   onMouseLeave={() => setHoveredCode(null)}
+                  onClick={() => handleOpenModal(hq)}
                   className="cursor-pointer transition-opacity duration-300"
                   opacity={hoveredCode && !isHovered ? 0.5 : 1}
                 >
@@ -639,9 +721,10 @@ export function GlobalNetworkSection() {
                     className="pointer-events-auto cursor-pointer overflow-visible select-none"
                     onMouseEnter={() => setHoveredCode(hq.code)}
                     onMouseLeave={() => setHoveredCode(null)}
+                    onClick={() => handleOpenModal(hq)}
                   >
                     <div className={`backdrop-blur-xl bg-[#022118]/95 border-2 border-emerald-400/80 rounded-xl p-2 flex flex-col gap-1 transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.4)] ${
-                      isHovered ? 'border-emerald-300 scale-105 shadow-[0_0_35px_rgba(16,185,129,0.6)]' : ''
+                      isHovered ? 'opacity-100 scale-105 border-emerald-300 shadow-[0_0_35px_rgba(16,185,129,0.6)] pointer-events-auto' : 'opacity-0 scale-90 pointer-events-none'
                     }`}>
                       <div className="flex items-center gap-1.5">
                         <span className="text-base leading-none select-none" role="img" aria-label="Pakistan">{hq.flag}</span>
@@ -678,6 +761,7 @@ export function GlobalNetworkSection() {
                 key={loc.code}
                 onMouseEnter={() => setHoveredCode(loc.code)}
                 onMouseLeave={() => setHoveredCode(null)}
+                onClick={() => handleOpenModal(loc)}
                 whileHover={{ y: -3 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 className={`p-5 rounded-2xl border text-left flex flex-col justify-between min-h-[160px] transition-all duration-300 cursor-pointer ${
@@ -726,10 +810,12 @@ export function GlobalNetworkSection() {
                   </p>
 
                   {/* Head of Operations Badge in Card */}
-                  <div className="pt-2 border-t border-slate-100 flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-lg bg-slate-100 text-slate-800 text-[10px] font-bold font-mono flex items-center justify-center shrink-0 border border-slate-200">
-                      {loc.headOfOperations.initials}
-                    </div>
+                  <div className="pt-2 border-t border-slate-100 flex items-center gap-2.5">
+                    <img
+                      src={loc.headOfOperations.photo}
+                      alt={loc.headOfOperations.name}
+                      className="w-7 h-7 rounded-lg object-cover border border-slate-200 shrink-0"
+                    />
                     <div className="flex flex-col min-w-0">
                       <span className="text-[10px] font-bold font-sans text-slate-800 truncate leading-none">
                         {loc.headOfOperations.name}
@@ -742,7 +828,7 @@ export function GlobalNetworkSection() {
                 </div>
 
                 <div className="pt-2.5 mt-2 border-t border-slate-100 flex items-center justify-between text-[9px] font-mono">
-                  <span className="text-slate-400 font-medium">{loc.coords}</span>
+                  <span className="text-[#326E45] font-bold">Contact Office &rarr;</span>
                   <span className="text-[#326E45] font-bold flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#326E45] animate-ping" />
                     <span>ACTIVE</span>
@@ -778,6 +864,223 @@ export function GlobalNetworkSection() {
         </div>
 
       </div>
+
+      {/* ELEGANT MODAL CARD FOR HEAD OF OPERATIONS */}
+      <AnimatePresence>
+        {selectedNode && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedNode(null)}
+              className="fixed inset-0 bg-slate-950/70 backdrop-blur-md"
+            />
+
+            {/* Modal Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 12 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+              className="relative w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden z-10 text-slate-900 my-auto"
+            >
+              {/* Header Banner Background */}
+              <div className="bg-gradient-to-r from-slate-900 via-[#183923] to-[#326E45] p-6 text-white relative">
+                <button
+                  onClick={() => setSelectedNode(null)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-black/20 hover:bg-black/40 text-slate-200 hover:text-white transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X size={18} />
+                </button>
+
+                <div className="flex items-center gap-2 text-emerald-300 font-mono text-xs font-bold uppercase tracking-wider mb-2">
+                  <Globe size={14} />
+                  <span>Regional Operations Command • {selectedNode.country}</span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl" role="img" aria-label={selectedNode.country}>
+                    {selectedNode.flag}
+                  </span>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight text-white leading-tight">
+                      {selectedNode.city}, {selectedNode.country}
+                    </h3>
+                    <p className="text-xs font-sans text-slate-300 mt-0.5">
+                      {selectedNode.role}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-6 space-y-6">
+                
+                {/* Profile Card Header */}
+                <div className="flex items-start gap-4">
+                  <div className="relative shrink-0">
+                    <img
+                      src={selectedNode.headOfOperations.photo}
+                      alt={selectedNode.headOfOperations.name}
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#326E45]/30 shadow-md"
+                    />
+                    <div className="absolute -bottom-1 -right-1 p-1 bg-emerald-600 rounded-full text-white border-2 border-white shadow-xs">
+                      <UserCheck size={12} />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col text-left min-w-0">
+                    <span className="text-[10px] font-mono font-bold text-[#326E45] uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/80 w-fit mb-1">
+                      {selectedNode.headOfOperations.roleType}
+                    </span>
+                    <h4 className="text-lg sm:text-xl font-display font-bold text-slate-900 leading-snug">
+                      {selectedNode.headOfOperations.name}
+                    </h4>
+                    <p className="text-xs font-mono text-slate-600 mt-0.5 font-medium">
+                      {selectedNode.headOfOperations.title}
+                    </p>
+                    <div className="flex items-center gap-2 mt-1.5 text-[11px] font-mono text-emerald-700">
+                      <Clock size={12} />
+                      <span className="font-semibold">{selectedNode.headOfOperations.experience}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Executive Bio */}
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-left space-y-2">
+                  <h5 className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                    <ShieldCheck size={13} className="text-[#326E45]" />
+                    <span>Executive Biography</span>
+                  </h5>
+                  <p className="text-xs sm:text-sm text-slate-700 font-sans leading-relaxed">
+                    {selectedNode.headOfOperations.bio}
+                  </p>
+                </div>
+
+                {/* Regional Details & Contact info */}
+                {!contactMode ? (
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                      <div className="p-3 rounded-xl border border-slate-200 bg-white">
+                        <div className="text-[10px] font-mono font-bold text-slate-400 uppercase">Primary Focus Area</div>
+                        <div className="text-xs font-sans font-bold text-slate-800 mt-1 leading-tight">
+                          {selectedNode.headOfOperations.focus}
+                        </div>
+                      </div>
+
+                      <div className="p-3 rounded-xl border border-slate-200 bg-white">
+                        <div className="text-[10px] font-mono font-bold text-slate-400 uppercase">Regional Office Address</div>
+                        <div className="text-xs font-sans font-medium text-slate-700 mt-1 leading-tight flex items-start gap-1">
+                          <MapPin size={12} className="text-[#326E45] shrink-0 mt-0.5" />
+                          <span className="truncate">{selectedNode.headOfOperations.address}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                      <button
+                        onClick={() => setContactMode(true)}
+                        className="flex-1 px-5 py-3 rounded-xl bg-[#326E45] hover:bg-[#245032] text-white font-sans font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2"
+                      >
+                        <Mail size={15} />
+                        <span>Contact Regional Office</span>
+                      </button>
+                      <a
+                        href={`mailto:${selectedNode.headOfOperations.email}`}
+                        className="px-4 py-3 rounded-xl border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-slate-900 font-sans font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5"
+                      >
+                        <ExternalLink size={14} />
+                        <span>Direct Email</span>
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  /* Inline Regional Office Inquiry Form */
+                  <div className="p-4 rounded-2xl border border-slate-200 bg-slate-50 text-left space-y-3">
+                    <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                      <div className="flex items-center gap-2 text-xs font-bold font-sans text-slate-900">
+                        <Send size={14} className="text-[#326E45]" />
+                        <span>Inquire with {selectedNode.city} Regional Office</span>
+                      </div>
+                      <button 
+                        onClick={() => setContactMode(false)}
+                        className="text-xs font-mono text-slate-500 hover:text-slate-800 underline"
+                      >
+                        Back
+                      </button>
+                    </div>
+
+                    {contactSent ? (
+                      <div className="py-6 text-center space-y-2">
+                        <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
+                          <CheckCircle2 size={20} />
+                        </div>
+                        <h5 className="text-sm font-bold text-slate-900">Message Transmitted</h5>
+                        <p className="text-xs text-slate-600 max-w-xs mx-auto">
+                          Your request has been routed to <strong>{selectedNode.headOfOperations.name}</strong> ({selectedNode.city} Office). We will respond shortly.
+                        </p>
+                        <button
+                          onClick={() => { setContactSent(false); setContactMode(false); }}
+                          className="mt-3 px-4 py-1.5 rounded-lg bg-slate-900 text-white font-sans text-xs font-bold"
+                        >
+                          Done
+                        </button>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleContactSubmit} className="space-y-3">
+                        <div>
+                          <label className="block text-[10px] font-mono font-bold text-slate-500 uppercase mb-1">Your Full Name</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="John Doe"
+                            value={formData.name}
+                            onChange={e => setFormData({ ...formData, name: e.target.value })}
+                            className="w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#326E45]"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-mono font-bold text-slate-500 uppercase mb-1">Corporate Email</label>
+                          <input
+                            type="email"
+                            required
+                            placeholder="j.doe@company.com"
+                            value={formData.email}
+                            onChange={e => setFormData({ ...formData, email: e.target.value })}
+                            className="w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#326E45]"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-mono font-bold text-slate-500 uppercase mb-1">Project or Inquiry Details</label>
+                          <textarea
+                            required
+                            rows={3}
+                            placeholder={`How can the MetaWave ${selectedNode.city} team assist your enterprise?`}
+                            value={formData.message}
+                            onChange={e => setFormData({ ...formData, message: e.target.value })}
+                            className="w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#326E45]"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="w-full py-2.5 rounded-xl bg-[#326E45] hover:bg-[#245032] text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+                        >
+                          <Send size={13} />
+                          <span>Transmit Inquiry to {selectedNode.city} Regional Team</span>
+                        </button>
+                      </form>
+                    )}
+                  </div>
+                )}
+
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Animation keyframes */}
       <style>{`
