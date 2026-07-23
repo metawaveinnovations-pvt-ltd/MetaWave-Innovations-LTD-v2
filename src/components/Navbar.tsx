@@ -29,7 +29,8 @@ import {
   Newspaper,
   Volume2,
   VolumeX,
-  ShoppingBag
+  ShoppingBag,
+  Briefcase
 } from 'lucide-react';
 import MetaWaveLogo from './MetaWaveLogo';
 import { isSoundEnabled, setSoundEnabled, playSound } from '../utils/audio';
@@ -289,6 +290,7 @@ export function Navbar({ onNavClick, activeSection, isBannerOpen = true }: Navba
     { id: 'shop', label: 'Shop', icon: ShoppingBag, type: 'link' as const, targetId: 'shop', className: 'flex' },
     { id: 'services', label: 'Services', icon: Sparkles, type: 'dropdown' as const, targetId: 'services', className: 'flex' },
     { id: 'endeavors', label: 'Work', icon: Folder, type: 'link' as const, targetId: 'portfolio', className: 'hidden xl:flex' },
+    { id: 'careers', label: 'Careers', icon: Briefcase, type: 'link' as const, targetId: 'careers', className: 'hidden xl:flex' },
     { id: 'blog', label: 'Blogs', icon: Newspaper, type: 'link' as const, targetId: 'blog', className: 'flex' }
   ];
 
@@ -300,6 +302,7 @@ export function Navbar({ onNavClick, activeSection, isBannerOpen = true }: Navba
     if (activeSection === 'shop') return 'shop';
     if (activeSection === 'services') return 'services';
     if (activeSection === 'portfolio') return 'endeavors';
+    if (activeSection === 'careers') return 'careers';
     if (activeSection === 'blog' || activeSection.startsWith('blog-post-')) return 'blog';
     if (activeSection === 'contact') return 'ingress';
     if (activeSection === 'admin') return 'admin';
@@ -319,7 +322,9 @@ export function Navbar({ onNavClick, activeSection, isBannerOpen = true }: Navba
     { name: 'UI/UX & Brand Experience Design', text: 'Modern design systems focused on usability and strong user experience.', id: 'services', category: 'Expert Services' },
     { name: 'Digital Growth Strategy & Marketing', text: 'Accelerating brands through masterclass strategic digital marketing loops.', id: 'services', category: 'Growth Services' },
     { name: 'SEO & Performance Optimization', text: 'Optimized speed solutions to improve organic ranking, latency, and site visibility.', id: 'services', category: 'Growth Services' },
-    { name: 'About Us & Leadership Hub', text: 'Who we are, our core mission, and our multi-decade engineering legacy.', id: 'about', category: 'Company Profile' }
+    { name: 'About Us & Leadership Hub', text: 'Who we are, our core mission, and our multi-decade engineering legacy.', id: 'about', category: 'Company Profile' },
+    { name: 'Careers & Open Engineering Positions', text: 'Join our remote-first international team building high-impact software, AI models, and cloud infrastructure.', id: 'careers', category: 'Company Profile' },
+    { name: 'AI & Automation Technical Consulting', text: 'Autonomous agent architectures, LLM orchestration, intelligent process automation (RPA), enterprise RAG, and AI FinOps cost reduction.', id: 'ai-automation-consulting', category: 'Expert Services' }
   ];
 
   const searchResults = searchableEntries.filter(entry => 

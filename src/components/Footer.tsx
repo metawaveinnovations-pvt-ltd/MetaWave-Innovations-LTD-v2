@@ -14,25 +14,41 @@ export function Footer({ onNavClick }: FooterProps) {
       title: 'Company',
       links: [
         { label: 'Stewardship', id: 'about' },
+        { label: 'Technology Stack', id: 'tech-stack' },
         { label: 'Why Choose Us', id: 'why-metawave' },
         { label: 'Executive Team', id: 'executive-team' },
         { label: 'Enterprise Process', id: 'process' },
         { label: 'Partner Credentials', id: 'trustees' },
+        { label: 'Careers & Hiring', id: 'careers' },
       ]
     },
     {
       title: 'Services',
       links: [
-        { label: 'Custom Software', id: 'capabilities' },
-        { label: 'Web Development', id: 'capabilities' },
-        { label: 'AI Intelligence', id: 'capabilities' },
-        { label: 'Cloud Infrastructure', id: 'capabilities' },
+        { label: 'Custom Software Development', id: 'custom-software-development' },
+        { label: 'Full-Stack Development', id: 'full-stack-development' },
+        { label: 'UI/UX Design Studio', id: 'ui-ux-design' },
+        { label: 'Web Development', id: 'web-development' },
+        { label: 'Mobile App Development', id: 'mobile-development' },
+        { label: 'AI & Machine Learning', id: 'ai-machine-learning' },
+        { label: 'Cloud Infrastructure', id: 'cloud-solutions' },
+        { label: 'Business Process Automation', id: 'business-automation' },
+        { label: 'Digital Marketing & Growth', id: 'digital-marketing' },
+        { label: 'SEO & Search Optimization', id: 'seo-services' },
+        { label: 'E-Commerce Development', id: 'ecommerce-development' },
+        { label: 'CRM Development', id: 'crm-development' },
+        { label: 'ERP Development', id: 'erp-development' },
+        { label: 'API Development & Integrations', id: 'api-development-integrations' },
+        { label: 'Enterprise Systems Architecture', id: 'enterprise-systems' },
+        { label: 'Technical Advisory & Consulting', id: 'technical-consulting' },
+        { label: 'AI & Automation Consulting', id: 'ai-automation-consulting' },
       ]
     },
     {
       title: 'Solutions',
       links: [
-        { label: 'CRM & ERP Systems', id: 'solutions' },
+        { label: 'CRM Development', id: 'crm-development' },
+        { label: 'ERP Systems', id: 'erp-development' },
         { label: 'FinTech Platforms', id: 'solutions' },
         { label: 'Healthcare Portals', id: 'solutions' },
         { label: 'Property Portals', id: 'solutions' },
@@ -43,9 +59,10 @@ export function Footer({ onNavClick }: FooterProps) {
       title: 'Resources',
       links: [
         { label: 'Engineering Blog', id: 'blog' },
+        { label: 'FAQs & Knowledgebase', id: 'faqs' },
         { label: 'Technical Audits', id: 'contact' },
         { label: 'Platform Status', id: 'home' },
-        { label: 'Support SLA', id: 'contact' },
+        { label: 'Support SLA', id: 'faqs' },
       ]
     }
   ];

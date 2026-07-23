@@ -32,7 +32,11 @@ interface ServiceGroup {
   indexRef: string;
 }
 
-export function Services() {
+interface ServicesProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export function Services({ onNavigate }: ServicesProps) {
   const [activeGroup, setActiveGroup] = useState<string>('software');
 
   const serviceCategories: ServiceGroup[] = [
@@ -217,22 +221,84 @@ export function Services() {
 
               {/* Right Column Custom Sub-services grid */}
               <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {currentGroup.subservices.map((sub, sIdx) => (
-                  <motion.div 
-                    key={sIdx} 
-                    whileHover={{ scale: 1.025, y: -2 }}
-                    transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                    className="p-4 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-white hover:border-slate-300 transition-all duration-300 pointer group/sub text-left space-y-1.5 shadow-3xs hover:shadow-2xs"
-                  >
-                    <div className="flex items-center gap-1.5 text-slate-900 font-semibold text-xs font-sans">
-                      <ChevronRight size={12} className="text-[#326E45] group-hover/sub:translate-x-0.5 transition-transform" />
-                      <span className="group-hover/sub:text-[#326E45] transition-colors">{sub.name}</span>
-                    </div>
-                    <p className="text-[10px] text-slate-500 leading-normal pl-4.5 font-normal">
-                      {sub.description}
-                    </p>
-                  </motion.div>
-                ))}
+                {currentGroup.subservices.map((sub, sIdx) => {
+                  const nameLower = sub.name.toLowerCase();
+                  const isErp = nameLower.includes('erp') || nameLower.includes('enterprise resource planning') || nameLower.includes('inventory') || nameLower.includes('sap') || nameLower.includes('netsuite') || nameLower.includes('supply chain');
+                  const isCrm = (nameLower.includes('crm') || nameLower.includes('customer relationship') || nameLower.includes('lead management') || nameLower.includes('sales optimisation') || nameLower.includes('sales optimization')) && !isErp;
+                  const isEcommerce = (nameLower.includes('commerce') || nameLower.includes('shopify') || nameLower.includes('store') || nameLower.includes('cart') || nameLower.includes('marketplace')) && !isCrm && !isErp;
+                  const isSeo = (nameLower.includes('seo') || nameLower.includes('search engine optimization') || nameLower.includes('core web vitals')) && !isEcommerce && !isCrm;
+                  const isMarketing = (nameLower.includes('marketing') || nameLower.includes('ppc') || nameLower.includes('cro') || nameLower.includes('ad') || nameLower.includes('campaign') || activeGroup === 'marketing') && !isSeo && !isEcommerce;
+                  const isAutomation = (nameLower.includes('automation') || nameLower.includes('rpa') || nameLower.includes('workflow') || nameLower.includes('process') || nameLower.includes('bot')) && !isMarketing && !isSeo;
+                  const isAi = (nameLower.includes('ai') || nameLower.includes('machine') || nameLower.includes('learning') || nameLower.includes('llm') || nameLower.includes('generative') || nameLower.includes('nlp') || nameLower.includes('vision') || nameLower.includes('rag') || activeGroup === 'ai') && !isAutomation && !isMarketing && !isSeo;
+                  const isEnterprise = nameLower.includes('enterprise system') || nameLower.includes('enterprise architecture') || nameLower.includes('monolith') || (nameLower.includes('enterprise') && !isErp && !isCrm);
+                  const isConsulting = nameLower.includes('consulting') || nameLower.includes('advisory') || nameLower.includes('cto') || nameLower.includes('audit') || nameLower.includes('finops') || nameLower.includes('due diligence');
+                  const isApi = (nameLower.includes('api') || nameLower.includes('webhook') || nameLower.includes('graphql') || nameLower.includes('rest') || (nameLower.includes('integration') && !isErp && !isCrm)) && !isEnterprise && !isConsulting;
+                  const isCloud = (nameLower.includes('cloud') || nameLower.includes('devops') || nameLower.includes('aws') || nameLower.includes('kubernetes') || nameLower.includes('serverless')) && !isApi && !isEnterprise && !isConsulting;
+                  const isMobileDev = nameLower.includes('mobile');
+                  const isUiUx = nameLower.includes('ui') || nameLower.includes('ux') || nameLower.includes('design') || nameLower.includes('prototype') || nameLower.includes('wireframe');
+                  const isFullStack = nameLower.includes('full') || nameLower.includes('stack') || nameLower.includes('saas') || nameLower.includes('jamstack');
+                  const isWebDev = nameLower.includes('custom web') || (nameLower.includes('web') && !nameLower.includes('software') && !isFullStack && !isUiUx && !isCloud && !isAi && !isAutomation);
+                  const isCustomSoftware = nameLower.includes('enterprise') || nameLower.includes('integration') || nameLower.includes('software') || nameLower.includes('api') || nameLower.includes('system') || activeGroup === 'software';
+
+                  return (
+                    <motion.div 
+                      key={sIdx} 
+                      whileHover={{ scale: 1.025, y: -2 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                      onClick={() => {
+                        if (onNavigate) {
+                          if (isConsulting) {
+                            onNavigate('technical-consulting');
+                          } else if (isEnterprise) {
+                            onNavigate('enterprise-systems');
+                          } else if (isApi) {
+                            onNavigate('api-development-integrations');
+                          } else if (isErp) {
+                            onNavigate('erp-development');
+                          } else if (isCrm) {
+                            onNavigate('crm-development');
+                          } else if (isEcommerce) {
+                            onNavigate('ecommerce-development');
+                          } else if (isSeo) {
+                            onNavigate('seo-services');
+                          } else if (isMarketing) {
+                            onNavigate('digital-marketing');
+                          } else if (isAutomation) {
+                            onNavigate('business-automation');
+                          } else if (isAi) {
+                            onNavigate('ai-machine-learning');
+                          } else if (isCloud) {
+                            onNavigate('cloud-solutions');
+                          } else if (isUiUx) {
+                            onNavigate('ui-ux-design');
+                          } else if (isMobileDev) {
+                            onNavigate('mobile-development');
+                          } else if (isFullStack) {
+                            onNavigate('full-stack-development');
+                          } else if (isWebDev) {
+                            onNavigate('web-development');
+                          } else if (isCustomSoftware) {
+                            onNavigate('custom-software-development');
+                          } else {
+                            onNavigate('custom-software-development');
+                          }
+                        }
+                      }}
+                      className="p-4 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-white hover:border-[#326E45]/40 transition-all duration-300 cursor-pointer group/sub text-left space-y-1.5 shadow-3xs hover:shadow-2xs relative"
+                    >
+                      <div className="flex items-center justify-between gap-1.5 text-slate-900 font-semibold text-xs font-sans">
+                        <div className="flex items-center gap-1.5">
+                          <ChevronRight size={12} className="text-[#326E45] group-hover/sub:translate-x-0.5 transition-transform" />
+                          <span className="group-hover/sub:text-[#326E45] transition-colors">{sub.name}</span>
+                        </div>
+                        <ArrowRight size={12} className="text-slate-400 group-hover/sub:text-[#326E45] group-hover/sub:translate-x-1 transition-all" />
+                      </div>
+                      <p className="text-[10px] text-slate-500 leading-normal pl-4.5 font-normal">
+                        {sub.description}
+                      </p>
+                    </motion.div>
+                  );
+                })}
               </div>
 
             </motion.div>

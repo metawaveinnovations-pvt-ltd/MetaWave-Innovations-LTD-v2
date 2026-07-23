@@ -167,5 +167,5 @@ export const COMPANY_DATA = [
   { name: 'Technology Stack', desc: 'Our certified production ecosystems engineered for latency and security.', icon: Cpu, link: 'tech-stack' },
   { name: 'Careers', desc: 'Join our world class remote digital platform team.', icon: Briefcase, link: 'contact', badge: 'We are hiring!' },
   { name: 'Partnerships', desc: 'System integrators and strategic consultants global alliances.', icon: Globe, link: 'contact' },
-  { name: 'Resources', desc: 'Technical whitepapers and SLA benchmark metrics guidelines.', icon: HelpCircle, link: 'portfolio' },
+  { name: 'FAQs & Knowledgebase', desc: 'Answers to software development, pricing, security, and SLAs.', icon: HelpCircle, link: 'faqs' },
 ];
